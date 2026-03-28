@@ -18,7 +18,7 @@
 </head>
 <body>
   <div id="root"></div>
-  <form name="contributions" netlify netlify-honeypot="bot-field" hidden><input name="name"/><input name="email"/><textarea name="message"></textarea></form>
+  <form name="contributions" netlify netlify-honeypot="bot-field" hidden><input name="signal"/><textarea name="message"></textarea></form>
   <script type="text/babel">
     const { useState } = React;
 
@@ -178,7 +178,7 @@
       ]
     };
 
-    function ShiningLight() {
+    function FreshBuild() {
       const [expandedItem, setExpandedItem] = useState(null);
 
       return (
@@ -269,23 +269,11 @@
                 name="contributions"
                 method="POST"
                 data-netlify="true"
+                netlify-honeypot="bot-field"
                 style={styles.form}
               >
                 <input type="hidden" name="form-name" value="contributions" />
-                <div style={styles.formRow}>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Name (optional)"
-                    style={styles.formInput}
-                  />
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email (optional)"
-                    style={styles.formInput}
-                  />
-                </div>
+                <p style={{display: "none"}}><input name="bot-field" /></p>
                 <textarea
                   name="message"
                   placeholder="What would you add, change, or challenge?"
@@ -293,6 +281,15 @@
                   required
                   style={styles.formTextarea}
                 />
+                <div style={styles.signalRow}>
+                  <input
+                    type="text"
+                    name="signal"
+                    placeholder="Your Signal handle (optional)"
+                    style={styles.formInput}
+                  />
+                  <a href="https://signal.org/install" target="_blank" rel="noopener noreferrer" style={styles.signalLink}>Get Signal</a>
+                </div>
                 <button type="submit" style={styles.formButton}>
                   Submit
                 </button>
@@ -500,13 +497,21 @@
         flexDirection: "column",
         gap: "12px",
       },
-      formRow: {
+      signalRow: {
         display: "flex",
+        alignItems: "center",
         gap: "12px",
         flexWrap: "wrap",
       },
+      signalLink: {
+        fontSize: "13px",
+        color: "#8B7355",
+        textDecoration: "none",
+        borderBottom: "1px solid #8B7355",
+        paddingBottom: "1px",
+      },
       formInput: {
-        flex: "1 1 200px",
+        maxWidth: "300px",
         padding: "10px 14px",
         fontSize: "14px",
         fontFamily: "'Source Serif 4', 'Georgia', serif",
@@ -542,7 +547,7 @@
       },
     };
 
-    ReactDOM.createRoot(document.getElementById("root")).render(<ShiningLight />);
+  ReactDOM.createRoot(document.getElementById("root")).render(<FreshBuild />);
   </script>
 </body>
 </html>
