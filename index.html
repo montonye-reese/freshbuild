@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,8 +26,8 @@
     const doc = {
       preamble: {
         title: "Fresh Build",
-        subtitle: "A list of systems that \u2014 had they been in place \u2014 may have averted what we're currently living through.",
-        blueprint: "Perhaps this can become a battle-hardened blueprint for governance by the people, of the people, and for the people.",
+        subtitle: "This was a list of systems that \u2014 had they been in place \u2014 may have averted what we're living through.",
+        blueprint: "It's just a start. Perhaps it can be a battle-hardened blueprint for governance by the people, of the people, and for the people.",
         principles: [
           "True to the spirit of the Declaration \u2014 life, liberty, pursuit of happiness",
           "True to the letter of the Constitution \u2014 balancing powers, justice for all",
@@ -188,19 +189,7 @@
             <header style={styles.header}>
               <div style={styles.headerAccent} />
               <h1 style={styles.title}>{doc.preamble.title}</h1>
-              <p style={styles.subtitle}>{doc.preamble.subtitle}</p>
-              <p style={styles.blueprint}>{doc.preamble.blueprint}</p>
-              <ul style={styles.principles}>
-                {doc.preamble.principles.map((p, i) => (
-                  <li key={i} style={styles.principleItem}>{p}</li>
-                ))}
-              </ul>
               <p style={styles.hint}>Select any heading below to read the full case.</p>
-              <div style={styles.meta}>
-                <span style={styles.metaText}>
-                  Started {doc.preamble.startDate}
-                </span>
-              </div>
             </header>
 
             <main style={styles.main}>
@@ -259,6 +248,20 @@
                 </section>
               ))}
             </main>
+
+            <section style={{maxWidth: "680px", marginTop: "80px"}}>
+              <div style={styles.contributeLine} />
+              <p style={styles.subtitle}>{doc.preamble.subtitle}</p>
+              <p style={styles.blueprint}>{doc.preamble.blueprint}</p>
+              <ul style={styles.principles}>
+                {doc.preamble.principles.map((p, i) => (
+                  <li key={i} style={styles.principleItem}>{p}</li>
+                ))}
+              </ul>
+              <div style={{...styles.meta, marginTop: "16px"}}>
+                <span style={styles.metaText}>Started {doc.preamble.startDate}</span>
+              </div>
+            </section>
 
             <section style={styles.contributeSection}>
               <div style={styles.contributeLine} />
@@ -553,3 +556,4 @@
   </script>
 </body>
 </html>
+```
