@@ -190,6 +190,9 @@
               <div style={styles.headerAccent} />
               <h1 style={styles.title}>{doc.preamble.title}</h1>
               <p style={styles.hint}>Select any heading below to see what for-the-people governance could look like.</p>
+              <div style={{...styles.meta, marginTop: "16px"}}>
+                <span style={styles.metaText}>Started {doc.preamble.startDate}</span>
+              </div>
             </header>
 
             <main style={styles.main}>
@@ -258,9 +261,6 @@
                   <li key={i} style={styles.principleItem}>{p}</li>
                 ))}
               </ul>
-              <div style={{...styles.meta, marginTop: "16px"}}>
-                <span style={styles.metaText}>Started {doc.preamble.startDate}</span>
-              </div>
             </section>
 
             <section style={styles.contributeSection}>
