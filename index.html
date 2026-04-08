@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fresh Build</title>
+  <meta name="description" content="A list of systems that — had they been in place — may have averted what we're witnessing today." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #FAFAF7; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <form name="contributions" netlify netlify-honeypot="bot-field" hidden><input name="signal"/><textarea name="message"></textarea></form>
+  <script type="text/babel">
+    const { useState } = React;
+
+    const doc = {
+      preamble: {
+        title: "Fresh Build",
+        subtitle: "This was a list of systems that \u2014 had they been in place \u2014 may have averted what we're living through.",
+        blueprint: "It's just a start. Perhaps it can be a battle-hardened blueprint for governance by the people, of the people, and for the people.",
+        principles: [
+          "True to the spirit of the Declaration \u2014 life, liberty, pursuit of happiness",
+          "True to the letter of the Constitution \u2014 balancing powers, justice for all",
+          "True to the lesson we\u2019re learning now \u2014 that justice for all requires systems that enforce accountability, and leaders who understand their duty is to the people"
+        ],
+        startDate: "December 2025"
+      },
+      sections: [
+        {
+          id: "character-as-infrastructure",
+          title: "Character as Infrastructure",
+          description: "The precondition for everything that follows",
+          items: [
+            {
+              id: "character-not-bonus",
+              title: "Character is not a bonus \u2014 it is the first structural decision",
+              body: "The most important infrastructure decision a democracy makes is not which laws to pass or which institutions to build. It is who it entrusts to operate them. A constitution does not enforce itself. An oversight body does not function when led by someone who sees oversight as an obstacle. A system designed for accountability will produce accountability only if the people running it believe accountability matters \u2014 or at minimum, are unwilling to destroy it. We are living this. Institutions hold \u2014 on paper. The Constitution is still in force. The courts still exist. The inspectors general \u2014 who weren\u2019t fired \u2014 have statutory authority. Yet often, it hardly matters, because the people in charge treat the system not as something to maintain but as something to circumvent, dismantle, or simply ignore. When \u201crespects the rule of law\u201d becomes a compliment rather than a baseline requirement, the floor has already collapsed beneath you. Character is not a wish. It is infrastructure. Neglect it the way you\u2019d neglect a bridge, and the result is the same."
+            },
+            {
+              id: "enforceable-baseline",
+              title: "Enforceable baseline standards for public office",
+              body: "End the practice of treating basic ethics as optional for elected officials. Require full financial disclosure, mandatory divestment from conflicts of interest, and binding adherence to the same laws officials are sworn to uphold \u2014 with enforcement mechanisms that operate at the speed of the violation, not years after the damage is done."
+            },
+            
+          ]
+        },
+        {
+          id: "civic-formation",
+          title: "Civic Formation",
+          description: "Building the constitutional instinct from childhood",
+          items: [
+            {
+              id: "pledge",
+              title: "Pledge allegiance to the Constitution",
+              body: "Replace the pledge to the flag \u2014 a symbol \u2014 with a pledge to the Constitution \u2014 the substance. The flag asks for loyalty to an identity. The Constitution asks for loyalty to a set of principles. These are not the same thing."
+            },
+            {
+              id: "daily-constitution",
+              title: "Five minutes of Constitution, every morning, K\u201312",
+              body: "Following the pledge, every school day begins with five minutes of constitutional engagement \u2014 songs, recitations, readings. Not as trivia. As muscle memory. Thirteen years of five minutes a day means a population that carries Article I Section 8 the way they carry the lyrics to songs they learned as children. The violation registers before the analysis does. That\u2019s the point."
+            }
+          ]
+        },
+        {
+          id: "electoral-integrity",
+          title: "Electoral Integrity",
+          description: "Elections belong to voters, not to money",
+          items: [
+            {
+              id: "purge-lists",
+              title: "Standards for voter purge lists with criminal penalties",
+              body: "Establish strict, transparent standards for voter roll maintenance. Impose criminal penalties on officials who intentionally develop loose or overbroad purge lists \u2014 and require those responsible to repay the millions in taxpayer dollars wasted on them. The right to vote is not a campaign lever for whoever is in charge atm."
+            },
+            {
+              id: "public-funding",
+              title: "Public funding of elections",
+              body: "The majority of campaign financing comes from public funds \u2014 from taxes. This is not a cost. It is the price of a representative democracy that actually represents."
+            },
+            {
+              id: "contribution-cap",
+              title: "Private contributions capped at 40\u00d7 federal hourly minimum wage",
+              body: "One donor, one candidate. The cap equals one week\u2019s pay for a minimum wage worker. The governing body matches the amount. This keeps the connection to working people visible in the structure itself \u2014 the cap is pegged to the minimum wage, not to wealth."
+            },
+            {
+              id: "outlaw-pacs",
+              title: "Outlaw PACs",
+              body: "No political action committees. No dark money. No end-runs around contribution limits. If you want to support a candidate, do it directly, within the cap, with your name attached. The net effect: representatives beholden to voters, not to donors."
+            }
+          ]
+        },
+        {
+          id: "economic-structure",
+          title: "Economic Structure",
+          description: "An economy that serves the commonwealth, not just shareholders",
+          items: [
+            {
+              id: "buyback-parity",
+              title: "Buyback-dividend tax parity",
+              body: "When a corporation buys back its own stock, treat every shareholder as if they received a dividend. Taxable event happens when the buyback happens \u2014 not decades later when someone decides to sell, and not never when they die holding the shares. This closes the deferral loophole and ends the free ride for foreign investors who currently pay zero US tax on buyback gains while collecting 30 percent of US corporate equity. Corporations can still buy back stock. They just can\u2019t use it as a tax-free alternative to dividends anymore."
+            },
+            {
+              id: "stepped-up-basis",
+              title: "Stepped-up basis with limits",
+              body: "When you die holding an asset, your heirs currently inherit it at current market value \u2014 and all the accumulated capital gains vanish. A family home and normal retirement savings should keep this protection. A $200 million stock portfolio should not get a magic reset at death. Set a threshold. Below it, heirs get the step-up. Above it, they inherit the original cost basis and pay taxes on the gains like everyone else."
+            },
+            {
+              id: "roth-cap",
+              title: "Cap Roth IRA balances",
+              body: "Roth IRA contributions are capped at $7,000 a year. Growth inside the account is not capped at all. This is how a few thousand dollars in early-stage startup equity becomes a multi-billion-dollar tax-free vault. Put a ceiling on total Roth value. Anything above it gets rolled into a regular brokerage and taxed along the way. This doesn\u2019t punish saving. It says: at some point, you graduate out of the tax shelter and rejoin the rest of us."
+            },
+            {
+              id: "carried-interest",
+              title: "Tax carried interest as income",
+              body: "Fund managers earn compensation for their labor and tax it at capital gains rates instead of income tax rates. It\u2019s a paycheck taxed as investment return. Every serious tax reform proposal for twenty years has said close this. It survives every time because the people benefiting from it fund the campaigns of the people who\u2019d have to close it. If it\u2019s compensation, tax it like compensation."
+            },
+            {
+              id: "estate-tax",
+              title: "The estate tax as constitutional duty",
+              body: "Reframe the estate tax not as punishment but as civic obligation. You thrived within this system \u2014 its infrastructure, its courts, its educated workforce, its stability. You won at capitalism. Now pay back into the system that made your winning possible. This is not redistribution. It is the maintenance fee for civilization."
+            },
+            {
+              id: "universal-health-coverage",
+              title: "Basic universal health coverage",
+              body: "A functioning nation \u2014 a democracy \u2014 invests in the health and education of its people \u2014 not as charity, but because that\u2019s what produces a population capable of self-governance and economic competition. Health coverage is one leg of that stool.\n\nHealth care tied to employment is not a benefit \u2014 it is a lever of control, and at scale, a moat. Large corporations love providing health insurance \u2014 not out of generosity, but because it is a barrier to entry for every competitor trying to scale. The moment a growing business crosses the threshold where it must provide coverage, it hits a cost wall that entrenched incumbents absorbed long ago. The current system doesn\u2019t just fail workers. It protects monopolies.\n\nReplace the entire mess \u2014 the premiums, the deductibles, the networks, the claims denials, the insurance company standing between you and your doctor deciding whether your treatment gets paid \u2014 with one public insurance pool, funded by taxes. You already know how this works. Your house catches fire, the fire truck shows up. You don\u2019t check whether the fire department is in-network. You don\u2019t get a bill. You already paid for it, and so did everyone else. That\u2019s the model. Apply it to health care.\n\nEvery peer nation that does this outperforms us on outcomes and spends less. The administrative overhead alone tells the story: private insurance burns roughly 15 percent on administration. Medicare runs at 2 percent. Independent analyses \u2014 including one funded by the Koch network \u2014 project trillions in savings over a decade when you account for what Americans actually spend: premiums, deductibles, copays, and the taxes already funding the 64 percent of health care the government quietly pays for now.\n\nThis is not a cost. It is a reallocation \u2014 from a fragmented system that enriches middlemen to a consolidated one that covers everyone. The side effect is a workforce unchained from jobs they\u2019d otherwise leave and a competitive landscape where startups aren\u2019t kneecapped by benefits administration before they even hit stride."
+            }
+          ]
+        },
+        {
+          id: "duty-to-the-commons",
+          title: "Duty to The Commons",
+          description: "Being neighborly \u2014 codified",
+          items: [
+            {
+              id: "native-buffer-zones",
+              title: "Mandatory native buffer zones for data centers",
+              body: "AI data centers consume enormous power, strain local grids, and reshape the land they occupy. The benefits flow to distant shareholders. The noise, the heat,and the blighted landscape stay with the town.\n\nRequire federally mandated native vegetative buffer zones scaled to facility size \u2014 from 200 yards for small operations up to two kilometers for hyperscale campuses. A significant portion of each buffer must be public parkland with maintained trails, dense native planting, and genuine ecological function \u2014 not decorative landscaping around a parking lot.\n\nThese buffers are governed by independent land trusts whose fiduciary duty is to the community, not the data center operator. Trust governance standards are locked by legislation, not by contract \u2014 because a contract serves the parties who wrote it, and legislation serves the public. The land trust maintains the buffer in perpetuity. The operator funds it. The town benefits from it. And none of that is optional.\n\nYou want to build a factory that drinks a river\u2019s worth of water and pulls enough power to light a small city? The community gets a park, a buffer, and a trust that answers to them \u2014 permanently."
+            }
+          ]
+        },
+        {
+          id: "digital-rights",
+          title: "Digital Rights",
+          description: "Privacy as a fundamental right in the digital age",
+          items: [
+            {
+              id: "digital-bill-of-rights",
+              title: "A digital bill of rights",
+              body: "Congress has had decades to codify digital privacy as a constitutional right and failed. In the absence of federal protection, citizens are forced to become their own intelligence analysts just to exist online \u2014 not because they\u2019re doing anything wrong, but because the infrastructure for surveillance exists and malicious actors will use whatever threads they can gather. A Digital Bill of Rights establishes privacy as a fundamental right in the digital age: protection from warrantless surveillance, data sovereignty, and the right to exist digitally without being weaponized against."
+            }
+          ]
+        },
+        {
+          id: "e-pluribus-unum",
+          title: "E Pluribus Unum \u2014 Out of Many, One",
+          description: "Common values that strengthen our union",
+          items: [
+            {
+              id: "pluralism",
+              title: "Pluralism \u2014 Many Viewpoints > One Viewpoint",
+              body: "Systems that select for one profile \u2014 one background, one threat model, one definition of value \u2014 aren\u2019t optimized. They\u2019re fragile. Any engineer who wouldn\u2019t ship a system with a single sensor type shouldn\u2019t be building governance with a single worldview. Monoculture isn\u2019t just a single point of failure \u2014 it\u2019s a single field of vision.\n\n\u201cHigh value / low value\u201d is a broken fitness function because the question arises: value relative to what? A metric you chose? Fitness functions that optimize for a single variable produce systems that are locally optimal and globally brittle. Biology solved this problem millions of years ago. Genetic diversity isn\u2019t sentimental \u2014 it\u2019s the reason our species still exists.\n\nThe founders didn\u2019t build a consensus machine. They built a tension machine. Three branches, two chambers, federal and state \u2014 structural disagreement as a design feature. Our system of governance is already designed for multiple viewpoints to optimize toward SOTA solutions. If your governance model requires everyone to agree with you, you haven\u2019t outgrown democracy. You\u2019ve failed to understand engineering. Pluralism \u2014 biological, cultural, intellectual \u2014 is engineering elixir for systems looking to survive contact with reality. Cultivate it structurally: in classrooms, in governance bodies, in institutions.\n\nPluralism is a first principle of design \u2014 policy, oversight, planning, threat modeling. The phase where getting it wrong is expensive."
+            },
+            {
+              id: "building-for-scale",
+              title: "Building for Scale \u2014 From Many Ideas to One Deliverable",
+              body: "When it\u2019s time to deliver services to the American people, we expect apolitical professionalism pointed toward single-purpose: efficient execution, delivery, and scale-up of proven solutions.\n\nHomogeneity can be a first principle of delivery \u2014 where the mission is defined, the playbook is proven, and the job is to execute. Building streamlined solutions from a playbook that was battle-tested through many viewpoints has the best potential to solve problems in service to all."
+            }
+          ]
+        }
+      ]
+    };
+
+    
+    function FreshBuild() {
+      const [expandedItem, setExpandedItem] = useState(null);
+
+      return (
+        <div style={styles.outer}>
+          <div style={styles.container}>
+            <header style={styles.header}>
+              <div style={styles.headerAccent} />
+              <h1 style={styles.title}>{doc.preamble.title}</h1>
+              <p style={styles.hint}>Select any heading below to see what for-the-people governance could look like.</p>
+              <div style={{...styles.meta, marginTop: "8px"}}>
+                <span style={styles.metaText}>Started {doc.preamble.startDate}</span>
+              </div>
+            </header>
+
+            <main style={styles.main}>
+              {doc.sections.map((section, si) => (
+                <section key={section.id}>
+                  <div style={styles.sectionHeader}>
+                    <div style={styles.sectionNumber}>
+                      {String(si + 1).padStart(2, "0")}
+                    </div>
+                    <div>
+                      <h2 style={styles.sectionTitle}>{section.title}</h2>
+                      <p style={styles.sectionDesc}>{section.description}</p>
+                    </div>
+                  </div>
+
+                  <div style={styles.itemsList}>
+                    {section.items.map((item) => {
+                      const isExpanded = expandedItem === item.id;
+                      return (
+                        <div
+                          key={item.id}
+                          style={{
+                            ...styles.item,
+                            ...(isExpanded ? styles.itemExpanded : {}),
+                          }}
+                          onClick={() =>
+                            setExpandedItem(isExpanded ? null : item.id)
+                          }
+                        >
+                          <div style={styles.itemHeader}>
+                            <h3 style={styles.itemTitle}>{item.title}</h3>
+                            <span
+                              style={{
+                                ...styles.expandIcon,
+                                transform: isExpanded
+                                  ? "rotate(45deg)"
+                                  : "rotate(0deg)",
+                              }}
+                            >
+                              +
+                            </span>
+                          </div>
+                          {isExpanded && (
+                            <div style={styles.itemBody}>
+                              {item.body.split("\n\n").map((para, i) => (
+                                <p key={i} style={i > 0 ? { marginTop: "12px" } : {}}>
+                                  {para}
+                                </p>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </section>
+              ))}
+            </main>
+
+            <section style={{maxWidth: "680px", marginTop: "80px"}}>
+              <div style={styles.contributeLine} />
+              <p style={styles.subtitle}>{doc.preamble.subtitle}</p>
+              <p style={styles.blueprint}>{doc.preamble.blueprint}</p>
+              <ul style={styles.principles}>
+                {doc.preamble.principles.map((p, i) => (
+                  <li key={i} style={styles.principleItem}>{p}</li>
+                ))}
+              </ul>
+            </section>
+
+            <section style={styles.contributeSection}>
+              <div style={styles.contributeLine} />
+              <h2 style={styles.contributeTitle}>Contribute</h2>
+              <p style={styles.contributeText}>
+                What's missing? What needs workshopping? Let's develop this together.
+              </p>
+              <form
+                name="contributions"
+                method="POST"
+                action="/thanks"
+                data-netlify="true"
+                netlify-honeypot="bot-field"
+                style={styles.form}
+              >
+                <input type="hidden" name="form-name" value="contributions" />
+                <p style={{display: "none"}}><input name="bot-field" /></p>
+                <textarea
+                  name="message"
+                  placeholder="What would you add, change, or challenge?"
+                  rows="4"
+                  required
+                  style={styles.formTextarea}
+                />
+                <div style={styles.signalRow}>
+                  <input
+                    type="text"
+                    name="signal"
+                    placeholder="Your Signal handle (optional)"
+                    style={styles.formInput}
+                  />
+                  <a href="https://signal.org/install" target="_blank" rel="noopener noreferrer" style={styles.signalLink}>Get Signal</a>
+                </div>
+                <button type="submit" style={styles.formButton}>
+                  Submit
+                </button>
+              </form>
+            </section>
+
+            <footer style={styles.footer}>
+              <div style={styles.footerLine} />
+            </footer>
+          </div>
+        </div>
+      );
+    }
+
+    const styles = {
+      outer: {
+        minHeight: "100vh",
+        background: "#FAFAF7",
+        fontFamily: "'Source Serif 4', 'Georgia', 'Times New Roman', serif",
+        color: "#1a1a18",
+        padding: "0",
+        margin: "0",
+      },
+      container: {
+        maxWidth: "680px",
+        margin: "0 auto",
+        padding: "48px 24px 64px",
+      },
+      header: {
+        marginBottom: "32px",
+        position: "relative",
+      },
+      headerAccent: {
+        width: "40px",
+        height: "3px",
+        background: "#8B7355",
+        marginBottom: "32px",
+      },
+      title: {
+        fontSize: "42px",
+        fontWeight: "700",
+        lineHeight: "1.1",
+        margin: "0 0 16px 0",
+        letterSpacing: "-0.5px",
+        color: "#1a1a18",
+      },
+      subtitle: {
+        fontSize: "19px",
+        lineHeight: "1.6",
+        margin: "0 0 20px 0",
+        color: "#3d3d38",
+        fontStyle: "italic",
+      },
+      blueprint: {
+        fontSize: "15px",
+        lineHeight: "1.7",
+        margin: "0 0 8px 0",
+        color: "#4a4a42",
+        fontStyle: "italic",
+      },
+      principles: {
+        listStyle: "none",
+        padding: "0",
+        margin: "0 0 24px 0",
+      },
+      principleItem: {
+        fontSize: "14px",
+        lineHeight: "1.7",
+        color: "#4a4a42",
+        fontStyle: "italic",
+        padding: "2px 0 2px 16px",
+        borderLeft: "2px solid #8B7355",
+        marginBottom: "4px",
+      },
+      hint: {
+        fontSize: "13px",
+        lineHeight: "1.6",
+        margin: "0 0 8px 0",
+        color: "#8B7355",
+        fontStyle: "italic",
+      },
+      meta: {
+        display: "flex",
+        alignItems: "center",
+        gap: "12px",
+      },
+      metaText: {
+        fontSize: "12px",
+        color: "#999",
+        fontFamily: "'Helvetica Neue', 'Arial', sans-serif",
+      },
+      main: {
+        display: "flex",
+        flexDirection: "column",
+        gap: "56px",
+      },
+      sectionHeader: {
+        display: "flex",
+        gap: "16px",
+        alignItems: "flex-start",
+        marginBottom: "20px",
+      },
+      sectionNumber: {
+        fontSize: "12px",
+        fontFamily: "'Helvetica Neue', 'Arial', sans-serif",
+        color: "#8B7355",
+        fontWeight: "700",
+        marginTop: "4px",
+        flexShrink: 0,
+      },
+      sectionTitle: {
+        fontSize: "24px",
+        fontWeight: "700",
+        margin: "0 0 4px 0",
+        lineHeight: "1.2",
+        color: "#1a1a18",
+      },
+      sectionDesc: {
+        fontSize: "14px",
+        margin: "0",
+        color: "#7a7a70",
+        fontStyle: "italic",
+      },
+      itemsList: {
+        display: "flex",
+        flexDirection: "column",
+        gap: "2px",
+        marginLeft: "36px",
+      },
+      item: {
+        padding: "16px 20px",
+        cursor: "pointer",
+        borderLeft: "2px solid transparent",
+        transition: "all 0.2s ease",
+        borderRadius: "0 4px 4px 0",
+      },
+      itemExpanded: {
+        background: "#F4F1EB",
+        borderLeftColor: "#8B7355",
+      },
+      itemHeader: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "flex-start",
+        gap: "16px",
+      },
+      itemTitle: {
+        fontSize: "16px",
+        fontWeight: "600",
+        margin: "0",
+        lineHeight: "1.4",
+        color: "#2a2a25",
+      },
+      expandIcon: {
+        fontSize: "20px",
+        color: "#8B7355",
+        transition: "transform 0.2s ease",
+        flexShrink: 0,
+        fontWeight: "300",
+        fontFamily: "'Helvetica Neue', 'Arial', sans-serif",
+        lineHeight: "1",
+        marginTop: "-2px",
+      },
+      itemBody: {
+        fontSize: "15px",
+        lineHeight: "1.7",
+        margin: "12px 0 0 0",
+        color: "#4a4a42",
+      },
+      footer: {
+        marginTop: "80px",
+        textAlign: "center",
+      },
+      footerLine: {
+        width: "40px",
+        height: "1px",
+        background: "#d0cec6",
+        margin: "0 auto 20px",
+      },
+      contributeSection: {
+        marginTop: "80px",
+        maxWidth: "680px",
+      },
+      contributeLine: {
+        width: "40px",
+        height: "1px",
+        background: "#d0cec6",
+        marginBottom: "32px",
+      },
+      contributeTitle: {
+        fontSize: "24px",
+        fontWeight: "700",
+        lineHeight: "1.2",
+        color: "#1a1a18",
+        marginBottom: "12px",
+      },
+      contributeText: {
+        fontSize: "15px",
+        lineHeight: "1.7",
+        color: "#4a4a42",
+        marginBottom: "24px",
+      },
+      form: {
+        display: "flex",
+        flexDirection: "column",
+        gap: "12px",
+      },
+      signalRow: {
+        display: "flex",
+        alignItems: "center",
+        gap: "12px",
+        flexWrap: "wrap",
+      },
+      signalLink: {
+        fontSize: "13px",
+        color: "#8B7355",
+        textDecoration: "none",
+        borderBottom: "1px solid #8B7355",
+        paddingBottom: "1px",
+      },
+      formInput: {
+        maxWidth: "300px",
+        padding: "10px 14px",
+        fontSize: "14px",
+        fontFamily: "'Source Serif 4', 'Georgia', serif",
+        border: "1px solid #d0cec6",
+        borderRadius: "4px",
+        background: "#fff",
+        color: "#1a1a18",
+        outline: "none",
+      },
+      formTextarea: {
+        padding: "10px 14px",
+        fontSize: "14px",
+        fontFamily: "'Source Serif 4', 'Georgia', serif",
+        border: "1px solid #d0cec6",
+        borderRadius: "4px",
+        background: "#fff",
+        color: "#1a1a18",
+        outline: "none",
+        resize: "vertical",
+      },
+      formButton: {
+        alignSelf: "flex-start",
+        padding: "10px 28px",
+        fontSize: "14px",
+        fontFamily: "'Helvetica Neue', 'Arial', sans-serif",
+        fontWeight: "600",
+        color: "#fff",
+        background: "#8B7355",
+        border: "none",
+        borderRadius: "4px",
+        cursor: "pointer",
+        letterSpacing: "0.5px",
+      },
+    };
+
+  ReactDOM.createRoot(document.getElementById("root")).render(<FreshBuild />);
+  </script>
+</body>
+</html>
+```
