@@ -1,0 +1,15 @@
+# Captain's log + notebook — local only, never committed
+captains-log.md
+SHIPLOG.md
+notebook.md
+
+# Internal nugs (drafts, brainstorms, voice notes — public repo deploys, these don't)
+nugs/
+archive/
+
+# Etsy / store assets — separate workflow
+etsy/
+
+# Editor / OS noise
+.DS_Store
+*.swp
