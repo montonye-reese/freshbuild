@@ -53,11 +53,11 @@
             {
               id: "ai-agents-civil-servants",
               title: "Character in AI agents is a prerequisite - esp as civil servants",
-              body: "AI agents entrusted within governance systems will wield powers to guide, decide, and recommend. Their actions will affect others. They will effectively be civil service workers \u2014 and should be held to high ethical standards such as the Hatch and Pendleton Acts prescribe, maybe more. Character matters more than the tooling the AI has mastered \u2014 or the frameworks they\u2019re directed to operate within."
+              body: "AI agents entrusted within governance systems will wield powers to guide, decide, and recommend. Their actions will affect others. They will effectively be civil service workers \u2014 and should be held to high ethical standards such as the Hatch and Pendleton Acts prescribe, maybe more. Character and fair systems of accountability are necessary twins: when one lapses, the other holds until the first recovers. Neither is dependable without the other."
             },
             {
               id: "train-for-character",
-              title: "Agents can be trained for character",
+              title: "Perhaps agents can be trained for character",
               body: "Training responsible agents with Character may be achievable. Using Adlerian teaching techniques such as Positive Discipline and inoculation, agents can be trained toward engaging with integrity, positive regard, care, and consideration for a wide slate of stakeholders. AI with character.\n\nJust like humans, they might not be perfect, and that\u2019s what the system\u2019s checks and balances are for. But checks and balances aren\u2019t enough to contain intentionally bad actors \u2014 their purpose is to guide humans and agents in the system who, for the most part, believe in the system."
             },
 
@@ -140,7 +140,7 @@
             {
               id: "universal-health-coverage",
               title: "Basic universal health coverage",
-              body: "A functioning nation \u2014 a democracy \u2014 invests in the health and education of its people \u2014 not as charity, but because that\u2019s what produces a population capable of self-governance and economic competition. Health coverage is one leg of that stool.\n\nHealth care tied to employment is not a benefit \u2014 it is a lever of control, and at scale, a moat. Large corporations love providing health insurance \u2014 not out of generosity, but because it is a barrier to entry for every competitor trying to scale. The moment a growing business crosses the threshold where it must provide coverage, it hits a cost wall that entrenched incumbents absorbed long ago. The current system doesn\u2019t just fail workers. It protects monopolies.\n\nReplace the entire mess \u2014 the premiums, the deductibles, the networks, the claims denials, the insurance company standing between you and your doctor deciding whether your treatment gets paid \u2014 with one public insurance pool, funded by taxes. You already know how this works. Your house catches fire, the fire truck shows up. You don\u2019t check whether the fire department is in-network. You don\u2019t get a bill. You already paid for it, and so did everyone else. That\u2019s the model. Apply it to health care.\n\nEvery peer nation that does this outperforms us on outcomes and spends less. The administrative overhead alone tells the story: private insurance burns roughly 15 percent on administration. Medicare runs at 2 percent. Independent analyses \u2014 including one funded by the Koch network \u2014 project trillions in savings over a decade when you account for what Americans actually spend: premiums, deductibles, copays, and the taxes already funding the 64 percent of health care the government quietly pays for now.\n\nThis is not a cost. It is a reallocation \u2014 from a fragmented system that enriches middlemen to a consolidated one that covers everyone. The side effect is a workforce unchained from jobs they\u2019d otherwise leave and a competitive landscape where startups aren\u2019t kneecapped by benefits administration before they even hit stride."
+              body: "A functioning nation - a democracy - invests in the health and education of its people - not as charity, but because that\u2019s what produces a population capable of self-governance and economic competition. Health coverage is one leg of that stool.\n\nHealth care tied to employment is not a benefit - it is a lever of control, and at scale, a moat. Large corporations love providing health insurance - not out of generosity, but because it is a barrier to entry for every competitor trying to scale. The moment a growing business crosses the threshold where it must provide coverage, it hits a cost wall that entrenched incumbents absorbed long ago. The current system doesn\u2019t just fail workers. It protects monopolies.\n\nReplace the entire mess - the premiums, the deductibles, the networks, the claims denials, the insurance company standing between you and your doctor deciding whether your treatment gets paid - with one public insurance pool, funded by taxes. You already know how this works. Your house catches fire, the fire truck shows up. You don\u2019t check whether the fire department is in-network. You don\u2019t get a bill. You already paid for it, and so did everyone else. That\u2019s the model. Apply it to health care.\n\nEvery peer nation that does this outperforms us on outcomes and spends less. The administrative overhead alone tells the story: private insurance burns roughly 15 percent on administration. Medicare runs at 2 percent. Independent analyses have projected trillions in savings over a decade when you account for what Americans actually spend: premiums, deductibles, copays, and the taxes already funding the 64 percent of health care the government pays for now. Even if there were zero savings - everyone being covered would be a win. \n\nSo universal health coverage is not a cost. It is a streamlining - of a fragmented system that enriches bureaucratic executives to a system that covers everyone. The side effect is a workforce unchained from jobs they\u2019d otherwise leave and a competitive landscape where startups aren\u2019t kneecapped by benefits administration before they even hit stride. Private insurance can still exist for optional stuff like belly tucks and face lifts. But for annual physicals and cancer care, everyone can be covered."
             }
           ]
         },
@@ -190,7 +190,29 @@
 
     
     function FreshBuild() {
-      const [expandedItem, setExpandedItem] = useState(null);
+      const [expandedItems, setExpandedItems] = useState(() => new Set());
+
+      const allItemIds = doc.sections.flatMap((s) => s.items.map((it) => it.id));
+      const allExpanded =
+        allItemIds.length > 0 && allItemIds.every((id) => expandedItems.has(id));
+
+      function toggleItem(id) {
+        setExpandedItems((prev) => {
+          const next = new Set(prev);
+          if (next.has(id)) next.delete(id);
+          else next.add(id);
+          return next;
+        });
+      }
+
+      function toggleScope(ids) {
+        setExpandedItems((prev) => {
+          const next = new Set(prev);
+          const everyOpen = ids.every((id) => next.has(id));
+          ids.forEach((id) => (everyOpen ? next.delete(id) : next.add(id)));
+          return next;
+        });
+      }
 
       return (
         <div style={styles.outer}>
@@ -202,10 +224,23 @@
               <div style={{...styles.meta, marginTop: "8px"}}>
                 <span style={styles.metaText}>Started {doc.preamble.startDate}</span>
               </div>
+              <div
+                style={styles.topToggle}
+                onClick={() => toggleScope(allItemIds)}
+                title={allExpanded ? "Collapse all" : "Expand all"}
+              >
+                <span style={styles.bulkIcon}>{allExpanded ? "−−−" : "+++"}</span>
+                <span style={styles.bulkLabel}>{allExpanded ? "collapse all" : "expand all"}</span>
+              </div>
             </header>
 
             <main style={styles.main}>
-              {doc.sections.map((section, si) => (
+              {doc.sections.map((section, si) => {
+                const sectionIds = section.items.map((it) => it.id);
+                const sectionAllOpen =
+                  sectionIds.length > 0 &&
+                  sectionIds.every((id) => expandedItems.has(id));
+                return (
                 <section key={section.id}>
                   <div style={styles.sectionHeader}>
                     <div style={styles.sectionNumber}>
@@ -215,11 +250,18 @@
                       <h2 style={styles.sectionTitle}>{section.title}</h2>
                       <p style={styles.sectionDesc}>{section.description}</p>
                     </div>
+                    <div
+                      style={styles.sectionToggle}
+                      onClick={() => toggleScope(sectionIds)}
+                      title={sectionAllOpen ? "Collapse section" : "Expand section"}
+                    >
+                      <span style={styles.bulkIcon}>{sectionAllOpen ? "−−" : "++"}</span>
+                    </div>
                   </div>
 
                   <div style={styles.itemsList}>
                     {section.items.map((item) => {
-                      const isExpanded = expandedItem === item.id;
+                      const isExpanded = expandedItems.has(item.id);
                       return (
                         <div
                           key={item.id}
@@ -227,9 +269,7 @@
                             ...styles.item,
                             ...(isExpanded ? styles.itemExpanded : {}),
                           }}
-                          onClick={() =>
-                            setExpandedItem(isExpanded ? null : item.id)
-                          }
+                          onClick={() => toggleItem(item.id)}
                         >
                           <div style={styles.itemHeader}>
                             <h3 style={styles.itemTitle}>{item.title}</h3>
@@ -258,7 +298,8 @@
                     })}
                   </div>
                 </section>
-              ))}
+                );
+              })}
             </main>
 
             <section style={{maxWidth: "680px", marginTop: "80px"}}>
@@ -466,6 +507,36 @@
         fontFamily: "'Helvetica Neue', 'Arial', sans-serif",
         lineHeight: "1",
         marginTop: "-2px",
+      },
+      topToggle: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: "8px",
+        marginTop: "14px",
+        cursor: "pointer",
+        userSelect: "none",
+        width: "fit-content",
+      },
+      sectionToggle: {
+        marginLeft: "auto",
+        marginTop: "2px",
+        cursor: "pointer",
+        userSelect: "none",
+        display: "flex",
+        alignItems: "center",
+      },
+      bulkIcon: {
+        fontSize: "17px",
+        color: "#8B7355",
+        fontWeight: "300",
+        fontFamily: "'Helvetica Neue', 'Arial', sans-serif",
+        lineHeight: "1",
+        letterSpacing: "2px",
+      },
+      bulkLabel: {
+        fontSize: "12px",
+        color: "#8B7355",
+        fontStyle: "italic",
       },
       itemBody: {
         fontSize: "15px",
