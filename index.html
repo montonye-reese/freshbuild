@@ -133,11 +133,6 @@
               body: "Fund managers earn compensation for their labor and tax it at capital gains rates instead of income tax rates. It\u2019s a paycheck taxed as investment return. Every serious tax reform proposal for twenty years has said close this. It survives every time because the people benefiting from it fund the campaigns of the people who\u2019d have to close it. If it\u2019s compensation, tax it like compensation."
             },
             {
-              id: "estate-tax",
-              title: "The estate tax as constitutional duty",
-              body: "Reframe the estate tax not as punishment but as civic obligation. You thrived within this system \u2014 its infrastructure, its courts, its educated workforce, its stability. You won at capitalism. Now pay back into the system that made your winning possible. This is not redistribution. It is the maintenance fee for civilization."
-            },
-            {
               id: "universal-health-coverage",
               title: "Basic universal health coverage",
               body: "A functioning nation - a democracy - invests in the health and education of its people - not as charity, but because that\u2019s what produces a population capable of self-governance and economic competition. Health coverage is one leg of that stool.\n\nHealth care tied to employment is not a benefit - it is a lever of control, and at scale, a moat. Large corporations love providing health insurance - not out of generosity, but because it is a barrier to entry for every competitor trying to scale. The moment a growing business crosses the threshold where it must provide coverage, it hits a cost wall that entrenched incumbents absorbed long ago. The current system doesn\u2019t just fail workers. It protects monopolies.\n\nReplace the entire mess - the premiums, the deductibles, the networks, the claims denials, the insurance company standing between you and your doctor deciding whether your treatment gets paid - with one public insurance pool, funded by taxes. You already know how this works. Your house catches fire, the fire truck shows up. You don\u2019t check whether the fire department is in-network. You don\u2019t get a bill. You already paid for it, and so did everyone else. That\u2019s the model. Apply it to health care.\n\nEvery peer nation that does this outperforms us on outcomes and spends less. The administrative overhead alone tells the story: private insurance burns roughly 15 percent on administration. Medicare runs at 2 percent. Independent analyses have projected trillions in savings over a decade when you account for what Americans actually spend: premiums, deductibles, copays, and the taxes already funding the 64 percent of health care the government pays for now. Even if there were zero savings - everyone being covered would be a win. \n\nSo universal health coverage is not a cost. It is a streamlining - of a fragmented system that enriches bureaucratic executives to a system that covers everyone. The side effect is a workforce unchained from jobs they\u2019d otherwise leave and a competitive landscape where startups aren\u2019t kneecapped by benefits administration before they even hit stride. Private insurance can still exist for optional stuff like belly tucks and face lifts. But for annual physicals and cancer care, everyone can be covered."
@@ -149,6 +144,28 @@
           title: "Duty to The Commons",
           description: "Being neighborly \u2014 codified",
           items: [
+            {
+              id: "estate-tax",
+              title: "The estate tax as constitutional duty",
+              body: "Reframe the estate tax not as punishment but as civic obligation. You thrived within this system \u2014 its infrastructure, its courts, its educated workforce, its stability. You won at capitalism. Now pay back into the system that made your winning possible. This is not redistribution. It is the maintenance fee for civilization."
+            },
+            {
+              id: "wealth-tax-not-dumb",
+              title: "A Wealth Tax, But Not a Dumb One",
+              body: "Stoopid-wealth tends to be managed by professionals. Money managers take an annual cut, a percentage of Assets Under Management (AUM), at rates that are a fraction of a percent. How about establishing a wealth tax on those same assets and at a similar rate, between 0.1% and 0.45%, as a maintenance contribution to the system in which that wealth was possible to build in the first place: roads, education, infrastructure. Here\u2019s how it could work:\n\nThe fee is marginal. Assets under $200 million are exempt. From $200M to $300M, the rate climbs in increments, like this:\n\n[[TABLE]]\n\nSo a taxpayer with:\n\n[[EXAMPLES]]\n\nAt these rates, evasion stops making sense. A multi-billionaire pays a few million annually: real money, but not enough to justify the cost of appraisers, shell trusts, and litigation. They just pay it, and hopefully feel good about paying into the system in which they\u2019ve thrived.\n\nRevenue funds the general fund as basic maintenance on the commons: the courts, infrastructure, education, and financial stability that made wealth-building possible in the first place.\n\nIt\u2019s a pay-it-forward contribution to the civilization we\u2019re all so very proud to be a part of.",
+              table: {
+                columns: ["Bracket (net worth)", "Marginal rate"],
+                rows: [
+                  ["$0 \u2013 $200M", "0%"],
+                  ["$200M \u2013 $225M", "0.10%"],
+                  ["$225M \u2013 $250M", "0.20%"],
+                  ["$250M \u2013 $275M", "0.30%"],
+                  ["$275M \u2013 $300M", "0.40%"],
+                  ["$300M+", "0.45%"]
+                ]
+              },
+              examples: ["$250M pays $75,000", "$300M pays $250,000", "$1B pays $3.4 million"]
+            },
             {
               id: "native-buffer-zones",
               title: "Mandatory native buffer zones for data centers",
@@ -189,6 +206,39 @@
     };
 
     
+    function BracketTable({ table }) {
+      return (
+        <table style={styles.table}>
+          <thead>
+            <tr>
+              {table.columns.map((c, i) => (
+                <th
+                  key={i}
+                  style={{ ...styles.th, textAlign: i === 0 ? "left" : "right" }}
+                >
+                  {c}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {table.rows.map((row, ri) => (
+              <tr key={ri}>
+                {row.map((cell, ci) => (
+                  <td
+                    key={ci}
+                    style={{ ...styles.td, textAlign: ci === 0 ? "left" : "right" }}
+                  >
+                    {cell}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      );
+    }
+
     function FreshBuild() {
       const [expandedItems, setExpandedItems] = useState(() => new Set());
 
@@ -286,11 +336,25 @@
                           </div>
                           {isExpanded && (
                             <div style={styles.itemBody}>
-                              {item.body.split("\n\n").map((para, i) => (
-                                <p key={i} style={i > 0 ? { marginTop: "12px" } : {}}>
-                                  {para}
-                                </p>
-                              ))}
+                              {item.body.split("\n\n").map((para, i) => {
+                                if (para === "[[TABLE]]" && item.table) {
+                                  return <BracketTable key={i} table={item.table} />;
+                                }
+                                if (para === "[[EXAMPLES]]" && item.examples) {
+                                  return (
+                                    <ul key={i} style={styles.exampleList}>
+                                      {item.examples.map((ex, j) => (
+                                        <li key={j} style={styles.exampleItem}>{ex}</li>
+                                      ))}
+                                    </ul>
+                                  );
+                                }
+                                return (
+                                  <p key={i} style={i > 0 ? { marginTop: "12px" } : {}}>
+                                    {para}
+                                  </p>
+                                );
+                              })}
                             </div>
                           )}
                         </div>
@@ -543,6 +607,38 @@
         lineHeight: "1.7",
         margin: "12px 0 0 0",
         color: "#4a4a42",
+      },
+      table: {
+        width: "100%",
+        borderCollapse: "collapse",
+        margin: "16px 0",
+        fontSize: "14px",
+      },
+      th: {
+        padding: "6px 10px",
+        borderBottom: "2px solid #8B7355",
+        fontWeight: "700",
+        color: "#2a2a25",
+      },
+      td: {
+        padding: "6px 10px",
+        borderBottom: "1px solid #e5e2da",
+        color: "#4a4a42",
+        fontVariantNumeric: "tabular-nums",
+      },
+      exampleList: {
+        listStyle: "none",
+        padding: "0",
+        margin: "12px 0",
+      },
+      exampleItem: {
+        fontSize: "15px",
+        lineHeight: "1.7",
+        color: "#4a4a42",
+        padding: "2px 0 2px 16px",
+        borderLeft: "2px solid #8B7355",
+        marginBottom: "4px",
+        fontVariantNumeric: "tabular-nums",
       },
       footer: {
         marginTop: "80px",
